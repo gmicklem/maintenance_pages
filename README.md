@@ -1,0 +1,1 @@
+Place to keep Gemini-drafted maintanance pages for InterMine, FlyMine, HumanMine. Add frame-based url-forward DNS record, record IP addresses etc from A records for {inter, human, fly}mine.org and www versions too and delete the A records.
