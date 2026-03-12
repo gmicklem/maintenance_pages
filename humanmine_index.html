@@ -13,6 +13,8 @@
         .spinner { border: 3px solid #f1f5f9; border-top: 3px solid #3b82f6; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .footer { font-size: 0.8rem; color: #94a3b8; margin-top: 30px; }
+        .manual-link { margin-top: 15px; font-size: 0.85rem; }
+        .manual-link a { color: #3b82f6; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -20,25 +22,30 @@
         <div class="status-badge">Server Maintenance</div>
         <h1>HumanMine is Offline</h1>
         <p>The server hosting HumanMine is undergoing scheduled maintenance, which is expected to be complete by 13.00 GMT Sunday 15 Mar 2026</p>
-        
+
         <div class="spinner"></div>
         <p style="font-size: 0.9rem;">Checking system status... Page will refresh automatically.</p>
-        
+
+        <div class="manual-link">
+            <a href="https://www.humanmine.org">Click here to try manual redirect</a>
+        </div>
+
         <div class="footer">Thank you for your patience.</div>
     </div>
 
     <script>
         // CONFIGURATION FOR HUMANMINE
-        const SERVER_IP = "http://133.39.78.111"; // Replace with actual IP
+        // We use the 'monitor' subdomain to bypass Virtual Hosting issues
+        const MONITOR_URL = "http://monitor.humanmine.org"; 
         const SITE_URL = "https://www.humanmine.org";
 
         function checkStatus() {
-            fetch(SERVER_IP, { mode: 'no-cors', cache: 'no-store' })
+            fetch(MONITOR_URL, { mode: 'no-cors', cache: 'no-store' })
             .then(() => {
-                console.log("HumanMine is back! Redirecting...");
+                console.log("Server detected! Redirecting to HumanMine...");
                 window.location.href = SITE_URL;
             })
-            .catch(() => console.log("HumanMine still down..."));
+            .catch(() => console.log("Server still down..."));
         }
         setInterval(checkStatus, 30000); // Check every 30 seconds
     </script>
